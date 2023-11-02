@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            const lastNumber = parseInt(prompt("Enter number upto which you want fibonacci series:"));
+            if(lastNumber<0)
+            {
+                alert("Enter positive limit:");
+            }
+            const fibonacciSeries = generateFibonacciSeries(lastNumber);
+            document.write("Genereted Fibonacci series upto "+lastNumber+":"+fibonacciSeries.join(","));
+            function generateFibonacciSeries(lastNumber)
+            {
+                const fibonacciSeries = [0, 1];
+                for (let i = 2; i <= lastNumber; i++) {
+                    const nextNumber = fibonacciSeries[i - 1] + fibonacciSeries[i - 2];
+                    if (nextNumber <= lastNumber) 
+                    {
+                        fibonacciSeries.push(nextNumber);
+                    }   
+                    else 
+                    {
+                        break;
+                    }
+                }
+                return fibonacciSeries;
+            }
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>

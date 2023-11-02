@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            var n1 = parseInt(prompt("Enter number 1:"));
+            var n2 = parseInt(prompt("Enter number 2:"));
+            var n3 = parseInt(prompt("Enter number 3:"));
+            function largest ()
+            {
+                if (n1>n2 && n1>n3){
+                    return n1;
+                }
+                else if(n2>n1 && n2>n3)
+                {
+                    return n2;
+                }
+                else{
+                    return  n3;
+                }
+            }
+            var result = largest();
+            document.write("Largest number is: "+result);
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Typing Game</title>
+    <style>
+        body {
+          font-family: "Arial Black", sans-serif;
+          background-color: #3d3d3d;
+          color: #fff;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+        }   
+        .container {
+          background-color: #9500ff;
+          padding: 20px;
+          border-radius: 30px;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+          color: #fff;
+          font-size: 36px;
+          margin-bottom: 20px;
+        }
+        label {
+          font-size: 24px;
+          color: #fff;
+        }
+        input {
+          padding: 12px;
+          font-size: 20px;
+          border: 2px solid #fff;
+          border-radius: 8px;
+          margin-bottom: 20px;
+          background-color: #000000;
+          color: #fff;
+        }
+        button {
+          background-color: #ff5722;
+          color: #fff;
+          padding: 16px 32px;
+          font-size: 24px;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+        button:hover {
+          background-color: #ff9800;
+        }
+        .result {
+          font-size: 28px;
+          font-weight: bold;
+          margin-top: 30px;
+        }
+      </style>
+</head>
+<body>
+    <h2>Typing Game</h2>
+    <p id="sentence"></p>
+    <input type="text" id="input" oninput="checkInput()">
+    <p id="result"></p>
+
+    <script>
+        const sentences = [
+            "The quick brown fox jumps over the lazy dog.",
+            "Life is like a box of chocolates.",
+            "To be or not to be, that is the question.",
+            "A journey of a thousand miles begins with a single step.",
+            "In three words I can sum up everything I've learned about life: it goes on."
+        ];
+
+        let currentSentenceIndex = 0;
+        let startTime = 0;
+        let endTime = 0;
+
+        function startGame() {
+            currentSentenceIndex = 0;
+            showNextSentence();
+            document.getElementById('input').value = '';
+            document.getElementById('result').textContent = '';
+            document.getElementById('input').focus();
+        }
+
+        function showNextSentence() {
+            if (currentSentenceIndex < sentences.length) {
+                const sentenceElement = document.getElementById('sentence');
+                sentenceElement.textContent = sentences[currentSentenceIndex];
+                startTime = new Date().getTime();
+                currentSentenceIndex++;
+            } else {
+                showGameSummary();
+            }
+        }
+
+        function checkInput() {
+            const input = document.getElementById('input').value.trim();
+            const expectedSentence = sentences[currentSentenceIndex - 1];
+            if (input === expectedSentence) {
+                endTime = new Date().getTime();
+                const totalTime = (endTime - startTime) / 1000;
+                const accuracy = calculateAccuracy(input, expectedSentence);
+                const speed = calculateSpeed(input, totalTime);
+
+                document.getElementById('result').textContent = `Accuracy: ${accuracy}% | Speed: ${speed.toFixed(2)} words per minute`;
+                setTimeout(showNextSentence, 1000);
+            }
+        }
+
+        function calculateAccuracy(input, expected) {
+            let correctCount = 0;
+            for (let i = 0; i < input.length; i++) {
+                if (input[i] === expected[i]) {
+                    correctCount++;
+                }
+            }
+            return (correctCount / expected.length) * 100;
+        }
+
+        function calculateSpeed(input, time) {
+            const words = input.split(' ');
+            const wordCount = words.length;
+            const wordsPerMinute = (wordCount / time) * 60;
+            return wordsPerMinute;
+        }
+
+        startGame();
+    </script>
+</body>
+</html>

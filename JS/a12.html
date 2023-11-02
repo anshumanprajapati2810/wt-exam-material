@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function calculateSI(principal, rate, time) 
+            {
+                return (principal * rate * time) / 100;
+            }
+            function calculateCI(principal, rate, time, compoundTime) 
+            {
+                return principal * (Math.pow(1 + rate / (100*compoundTime), compoundTime*time) - 1);
+            }
+            function main() 
+            {
+                const principal = parseFloat(prompt("Enter the principal amount:"));
+                const rate = parseFloat(prompt("Enter the annual interest rate (%):"));
+                const time = parseFloat(prompt("Enter the time period (years):"));
+                const compoundTime = parseInt(prompt("Enter the time interest to be compounded per unit time:"));
+
+                if (principal < 0 || rate < 0 || time < 0 || compoundTime < 0) 
+                {
+                    alert("Invalid input. Please enter valid non-negative numbers.");
+                    return;
+                }
+                const simpleInterest = calculateSI(principal, rate, time);
+                const compoundInterest = calculateCI(principal, rate, time, compoundTime);
+                document.writeln("Simple Interest : "+simpleInterest);
+                document.writeln("Compound Interest : "+compoundInterest.toFixed(2));
+            }
+            main();
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Digital Clock</title>
+    <style>
+        body {
+            font-family: "Verdana", sans-serif;
+            background-color: #1d1f24;
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(105, 115, 255, 0.3);
+            padding: 30px;
+            text-align: center;
+            width: 300px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        #clock {
+            font-size: 36px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Live Clock by 22IT003</h2>
+        <div id="clock"></div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            const timeString = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`;
+            document.getElementById('clock').textContent = timeString;
+        }
+
+        function formatTime(time) {
+            return time < 10 ? `0${time}` : time;
+        }
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial call to display current time
+    </script>
+</body>
+</html>

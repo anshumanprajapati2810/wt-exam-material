@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Sorting</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Sorted Array</h2>
+        <ul id="sortedArray"></ul>
+        <script>
+            let n = parseInt(prompt("Enter the size of the array:"));
+            let array = [];
+            for (let i = 0; i < n; i++) {
+                array[i] = parseInt(prompt("Enter element " + i + ":"));
+            }
+            const sortedArray = array.slice().sort((a, b) => a - b);
+            const sortedList = document.getElementById("sortedArray");
+            sortedArray.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                sortedList.appendChild(li);
+            });
+        </script>
+    </div>
+</body>
+</html>

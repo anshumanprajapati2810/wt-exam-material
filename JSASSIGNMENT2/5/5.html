@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        label {
+            font-size: 18px;
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            margin-top: 20px;
+        }
+        ul li {
+            margin-bottom: 8px;
+        }
+        #totalPrice {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Your Cart</h2>
+        <ul id="cart"></ul>
+        <label for="item">Item:</label>
+        <input type="text" id="item">
+        <label for="price">Price:</label>
+        <input type="number" id="price">
+        <div>
+            <button onclick="addItem()">Add to cart</button>
+            <button onclick="removeItem()">Remove Item</button>
+            <button onclick="calculateTotal()">Generate Bill</button>
+        </div>
+        <p>Total Price: <span id="totalPrice">$0.00</span></p>
+    </div>
+
+    <script>
+       const cart = [];
+
+function addItem() {
+    const item = document.getElementById('item').value.trim();
+    const price = parseFloat(document.getElementById('price').value);
+
+    if (item && !isNaN(price) && price > 0) {
+        cart.push({ item, price });
+        updateCartDisplay();
+        document.getElementById('item').value = '';
+        document.getElementById('price').value = '';
+    }
+}
+
+function removeItem() {
+    const itemIndex = parseInt(prompt('Enter index to remove item:'));
+    if (!isNaN(itemIndex) && itemIndex >= 0 && itemIndex < cart.length) {
+        cart.splice(itemIndex, 1);
+        updateCartDisplay();
+    }
+}
+
+function calculateTotal() {
+    const total = cart.reduce((acc, item) => acc + item.price, 0);
+    document.getElementById('totalPrice').textContent = `$${total.toFixed(2)}`;
+}
+
+function updateCartDisplay() {
+    const cartList = document.getElementById('cart');
+    cartList.innerHTML = '';
+    cart.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${item.item} - $${item.price.toFixed(2)}`;
+        cartList.appendChild(li);
+    });
+}
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            let s = prompt("Enter Sentence");
+            let s_array=s.split(" ");
+            let longest = s_array[0];
+            for(var i =0 ; i<s_array.length;i++)
+            {   
+                if(s_array[i].length>=longest.length)
+                {
+                    longest = s_array[i];
+                }
+            }
+            document.write("The longest string is: " + longest);
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

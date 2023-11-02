@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            var t = parseFloat(prompt("Enter temperature value:"));
+            let unit = prompt("Enter unit in C or F:");
+            if(unit == 'C' || unit == 'c')
+            {
+                document.write("To Farenheit : "+(t * (9/5)) + 32);
+            }
+            else if(unit == 'F' || unit == 'f')
+            {
+                document.write("To Celsius : "+((t - 32) * 5/9));
+            }
+            else
+            {
+                alert("Enter proper unit only C or F");
+            }
+            
+        </script>
+    </head>
+</html>

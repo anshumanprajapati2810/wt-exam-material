@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            var n = prompt("Enter a number to find factorial:");
+            function fact(n)
+            {
+                if(n<0)
+                {
+                    alert("Enter positive number only");
+                    return NULL;
+                }
+                if(n==1 || n==0)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return n*fact(n-1);
+                }
+            }
+            var f=fact(n);
+            document.write("Factorial of "+n+" is "+f);
+        </script>
+        
+
+    </head>
+    <body>
+        
+    </body>
+</html>

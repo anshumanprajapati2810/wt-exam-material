@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            var array = [];
+            var n = parseInt(prompt("Enter total number to enter:"));
+            for(var i=0;i<n;i++)
+            {
+                array[i] = parseInt(prompt("Enter elements:"));
+                //var a = parseInt(prompt("Enter elements:"));
+                //array.push(a);
+            }
+            var sum = 0;
+            for(var i=0;i<n;i++)
+            {
+                sum+=array[i];
+            }
+            document.write("The sum of array is: "+sum);
+        </script>
+    </head>
+</html>

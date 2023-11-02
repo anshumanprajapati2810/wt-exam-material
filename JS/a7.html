@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            //main function
+            function main()
+            {
+                const passwordLength = parseInt(prompt("Enter the desired password length:"));
+
+                if (passwordLength <= 0) 
+                {
+                    alert("Invalid input. Please enter a valid positive number.");
+                    return;
+                }
+
+                const generatedPassword = randomPassword(passwordLength);
+                document.write("Generated password: " + generatedPassword);
+            }
+            main();    
+
+            //function to generate random password
+            function randomPassword(length) 
+            {
+                const alphanumericValues = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                let password = "";
+
+                for (let i = 0; i < length; i++) {
+                    const randomIndex = Math.floor(Math.random() * alphanumericValues.length);
+                    password += alphanumericValues.charAt(randomIndex);
+                }
+
+                return password;
+            }
+                
+
+
+
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>

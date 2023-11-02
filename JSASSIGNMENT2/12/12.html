@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .quiz-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #ff2222;
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s ease;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #ff9800;
+        }
+
+        #options button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #1500ff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        #options button:hover {
+            background-color: #ccc;
+        }
+
+        #score {
+            font-size: 18px;
+            color: #555;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>Simple Quiz</h2>
+        <div id="question"></div>
+        <div id="options"></div>
+        <button onclick="nextQuestion()">Next</button>
+        <p id="score"></p>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: 'Who is Narendra Modi?',
+                options: ['PmOIndia', 'CmOGujarat', 'MLA', 'None'],
+                correct: 0
+            },
+            {
+                question: 'Which colour is primary colour?',
+                options: ['Red', 'Green', 'Violet', 'Orange'],
+                correct: 0
+            },
+            // Add more questions
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function nextQuestion() {
+            const questionElement = document.getElementById('question');
+            const optionsElement = document.getElementById('options');
+            const scoreElement = document.getElementById('score');
+
+            const currentQuestion = questions[currentQuestionIndex];
+
+            questionElement.textContent = currentQuestion.question;
+            optionsElement.innerHTML = '';
+
+            currentQuestion.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.onclick = () => checkAnswer(index);
+                optionsElement.appendChild(button);
+            });
+
+            scoreElement.textContent = `Score: ${score}`;
+
+            currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
+        }
+
+        function checkAnswer(selectedIndex) {
+            const currentQuestion = questions[currentQuestionIndex];
+
+            if (selectedIndex === currentQuestion.correct) {
+                score++;
+            }
+
+            nextQuestion();
+        }
+
+        nextQuestion();
+    </script>
+</body>
+</html>
+
